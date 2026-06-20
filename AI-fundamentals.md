@@ -188,6 +188,8 @@ y = b0 + b1x1 + b2x2 + ... + bnxn
     - Increase in predictor → Decrease in target
 
 ### Ordinary Least Squares (OLS):
+<img width="840" height="702" alt="liner regression with residuals" src="https://github.com/user-attachments/assets/6c7d9d4c-fbf3-4d36-9aed-f4eb43e51c69" />
+
 - Most common method for estimating coefficients in Linear Regression.
 - Finds the line that best fits the data.
 - **Objective:**
