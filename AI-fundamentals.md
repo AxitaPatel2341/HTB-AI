@@ -254,3 +254,8 @@ If assumptions are violated:
 >   2. Independence
 >   3. Homoscedasticity
 >   4. Normality
+
+## Logistic Regression:
+<img width="989" height="590" alt="image" src="https://github.com/user-attachments/assets/749991be-bc4e-43df-b50d-e2ad2a09a022" />
+
+- 
