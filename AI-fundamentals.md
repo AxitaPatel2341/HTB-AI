@@ -74,4 +74,86 @@
 - Features: Measurable properties of data that serves as input to models. They are variables that algorithm uses to learn and make predictions. Selecting relevant features is imp for building effective model.
 - Labels: Known outcomes associated with each data point. They represent the "correct answers" that the model aims to predict.
 - Model: Mathematical representation of the relationship between the features and the labels. It's learned from training data and used to predict new data. Model can be considered function that takes input and predicts output.
-- Training: 
+- Training: Process of feeding training data to the algorithm and adjusting model's parameters to minimize prediction errors. The algo learns from training data by iteratively adjusting parameters to get better predictions.
+- Prediction: Once the model is trained, it's used to predict new data. It involves providing model with features and model will predict output. Prediction is specific app of inference, focusing on generating specific output such as classifying an email as spam etc.
+- Inference: Broader concept that encompasses prediction but also includes understading structures and patterns in data. It involves using a trained model to derive insights, estimate parameters and understand relationship between variables. e.g. Determining which features are more imp in a decision tree.
+- Evaluation: Critical step is supervised learning. It involves accessing models performance to determine accuracy and generation ability to new data. Common evaluation matrics:
+  - **Accuracy:** Proportin of correct predictions made by the model.
+  - **Precision:** Proportion of true positive predictions out of all positive predictions.
+  - **Recall:** Proportion of true positive predictions out of all actual positive instances.
+  - **F1-Score:** Harminic mean of precision and recall, providing balanced measure of model's performance.
+- Generalization: Refers to the model's ability to accurately predict outcomes for new data not used during training. A model that generalizes well can apply its learned knowledge to real-world scenarios.
+- Overfitting: When model learns training data too well, including noise and outliners. It can lead to poor generalization of new data as model memorized training sets instead of learning underlying patterns. 
+- Underfitting: When model is too simple to capture underlying patterns in data. It leads to poor performance in both training and new data.
+- Cross-Validation: Technique used to assess how well a model will generalize to independent dataset. It involves spilliting data into mutiple subsets (folds) and then train model on different combinations of these folds while validating it on remaining folds. It helps reduce overfitting and provide more reliable outcomes.
+- Regularization: Technique used to prevent overfitting by adding a penalty term to the loss function. This penalty discourages model from learning too complex patterns that might not generalize well. Common regularization techniques:
+  - L1 : Adds a penalty equal to the absolute value of the magnitude of coefficients.
+  - L2 : Adds a penalty equal to the square of the magnitude of coefficients.
+
+## Linear Regression:
+<img width="685" height="548" alt="Liner Regression Model" src="https://github.com/user-attachments/assets/db433d60-4713-4216-8c9a-5dbc5dea8e8e" />
+
+- It is used to predict a **continuous target variable**.
+- It assumes a **linear relationship** between:
+  - Target variable (output)
+  - Predictor variables (inputs/features)
+- The relationship is represented using a **linear equation**.
+- Changes in predictor variables cause proportional changes in the target variable.
+
+#### Goals of Linear Regression:
+- Find the **best-fitting straight line** that represents the relationship between input and output variables.
+- Minimize the **sum of squared differences** between:
+  - Actual values
+  - Predicted values
+- This optimization method is known as **Least Squares**.
+
+#### Example: House price prediction
+###### Problem: 
+- Predict a house's price based on its size.
+###### How linear regression works?
+- Linear Regression tries to find a straight line that best describes the relationship between:
+  - House size (predictor variable)
+  - House price (target variable)
+- Generally:
+  - As house size increases, price tends to increase.
+- Once the relationship is learned, the model can predict the price of a house given its size.
+
+### What is Regression?
+- Type of supervised learning. It's goal is to predict a **continuous target variable**. The output can take any vaslue within the range.
+- Regression focuses on estimating numerical values rather than assigning categories.
+- The key idea is:
+  - **Regression → Predicts numbers**
+  - **Classification → Predicts categories/labels**
+
+#### Examples of regression problems:
+1. House Price Prediction
+- Predict house prices using:
+  - Size
+  - Location
+  - Age
+2. Temperature Forecasting
+- Predict daily temperature using:
+  - Historical weather data
+3. Website Traffic Estimation
+- Predict number of website visitors using:
+  - Marketing spend
+  - Time of year
+
+#### Regression vs Classification:
+
+| Regression | Classification |
+|------------|---------------|
+| Predicts continuous values | Predicts categorical labels |
+| Output is a number | Output is a class/category |
+| Example: House price prediction | Example: Spam vs Not Spam |
+| Example: Temperature prediction | Example: Fraud vs Not Fraud |
+
+##### Linear regression as type of regression:
+- Linear regression is specific type of regression analysis. It assumes linear relationship between `predictor variables` and `target variable`.
+- The relationship is modeled using a **straight line**.
+- Used when the relationship between variables can be approximated linearly.
+
+> Basically:
+> - Regression predicts **continuous numerical values**.
+> - Linear Regression is a regression technique that assumes a **straight-line relationship** between inputs and output.
+> - The objective is to find the line that best fits the data while minimizing prediction errors.
