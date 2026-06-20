@@ -94,9 +94,7 @@
 <img width="685" height="548" alt="Liner Regression Model" src="https://github.com/user-attachments/assets/db433d60-4713-4216-8c9a-5dbc5dea8e8e" />
 
 - It is used to predict a **continuous target variable**.
-- It assumes a **linear relationship** between:
-  - Target variable (output)
-  - Predictor variables (inputs/features)
+- It assumes a **linear relationship** between `Predictor variables (inputs/features)` and `Target variable (output)`.
 - The relationship is represented using a **linear equation**.
 - Changes in predictor variables cause proportional changes in the target variable.
 
@@ -153,7 +151,104 @@
 - The relationship is modeled using a **straight line**.
 - Used when the relationship between variables can be approximated linearly.
 
-> Basically:
-> - Regression predicts **continuous numerical values**.
-> - Linear Regression is a regression technique that assumes a **straight-line relationship** between inputs and output.
-> - The objective is to find the line that best fits the data while minimizing prediction errors.
+### Simple Linear Regression:
+- Uses `one predictor variable (X)` and `one traget variable (Y)`.
+- **Equation:**
+```py
+y = mx + c
+```
+- **Components:**
+  - **y** → Predicted target variable
+  - **x** → Predictor variable
+  - **m** → Slope of the line
+    - Represents change in y for a unit change in x
+  - **c** → Y-intercept
+    - Value of y when x = 0
+- **Objective:**
+  - Find optimal values of **m** `(slope)` and **c** `(intercept)`
+  - Minimize prediction error between actual and predicted values.
+- **Training Method:** Typically solved using **Ordinary Least Squares (OLS)**.
+
+### Multiple Liner Regression: 
+- Used when multiple predictor variables affect a single target variable.
+- **Equation:**
+```py
+y = b0 + b1x1 + b2x2 + ... + bnxn
+```
+- **Components:**
+  - **y** → Predicted target variable
+  - **x1, x2, ..., xn** → Predictor variables
+  - **b0** → Y-intercept
+  - **b1, b2, ..., bn** → Coefficients of predictor variables
+- **Interpretation:**
+  - Each coefficient measures the influence of its predictor variable on the target variable.
+  - Positive coefficient:
+    - Increase in predictor → Increase in target
+  - Negative coefficient:
+    - Increase in predictor → Decrease in target
+
+### Ordinary Least Squares (OLS):
+- Most common method for estimating coefficients in Linear Regression.
+- Finds the line that best fits the data.
+- **Objective:**
+  - Minimize the difference between actual and predicted values.
+  - Specifically minimizes the **Residual Sum of Squares (RSS)**.
+- **Key terms:**
+  - Residual: Difference between actual and predicted value. `Residual = Actual Value - Predicted Value`.
+  - Residual Sum of Squares (RSS): Sum of all squared residuals. `RSS = Σ(Actual - Predicted)²`.
+    - Measures total prediction error.
+    - Lower RSS indicates a better-fitting model.
+- **Intuition:**
+  - Imagine drawing squares between each data point and the regression line.
+  - OLS finds the line that minimizes the total area of these squares.
+
+ #### OLS Process:
+1. Calculate Residuals:
+```text
+Residual = Actual - Predicted
+```
+2. Square Residuals:
+  - Makes all errors positive.
+  - Gives greater weight to larger errors.
+3. Sum Squared Residuals:
+```text
+RSS = Σ Residual²
+```
+4. Minimize RSS:
+  - Adjust model coefficients.
+  - Find the smallest possible RSS.
+  - Resulting line is called the **Line of Best Fit**.
+
+### Assumptions of Linear Regression:
+- Linear Regression relies on several assumptions for valid and reliable predictions.
+1. Linearity:
+   - Assumption: A linear relationship exists between predictor variables and target variable.
+   - Meaning: Changes in inputs produce proportional changes in output.
+2. Independence: 
+   - Assumption: Observations are independent of each other.
+   - Meaning: One observation should not influence another.
+3. Homoscedasticity:
+   - Assumption: Error variance remains constant across all levels of predictor variables.
+   - Meaning: Residuals should have roughly equal spread throughout the dataset.
+   - Desired pattern: `Residual Spread ≈ Constant` 
+4. Normality:
+   - Assumption: Residuals (errors) follow a normal distribution.
+   - Importance: Required for Statistical inference, Confidence intervals, Hypothesis testing, Reliable coefficient interpretation
+
+##### Why assumption matter: 
+If assumptions are violated:
+- Predictions may become inaccurate.
+- Coefficients may be misleading.
+- Statistical conclusions may be unreliable.
+
+> **Summary:**
+> - Linear Regression predicts continuous numerical values.
+> - It assumes a linear relationship between input and output variables.
+> - Simple Linear Regression uses one predictor variable.
+> - Multiple Linear Regression uses multiple predictor variables.
+> - OLS finds the best-fit line by minimizing RSS.
+> - Key assumptions:
+>   1. Linearity
+>   2. Independence
+>   3. Homoscedasticity
+>   4. Normality
