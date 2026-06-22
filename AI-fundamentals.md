@@ -258,4 +258,12 @@ If assumptions are violated:
 ## Logistic Regression:
 <img width="989" height="590" alt="image" src="https://github.com/user-attachments/assets/749991be-bc4e-43df-b50d-e2ad2a09a022" />
 
+- Mainly used for **classification**, not regression.
+- Predicts variable with two possible outcomes (binary classification).
+- Binary representations `0 or 1`, `true or false`, `yes or no`.
+- Example: predict whether email is spam or not.
+- The algo models probability of target variable belongs to a particular class using logistic function.
+- Logistic Function: Maps the input features to a value between 0 and 1.
+
+### What is Classification:
 - 
