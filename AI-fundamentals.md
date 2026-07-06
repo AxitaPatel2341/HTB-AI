@@ -266,4 +266,60 @@ If assumptions are violated:
 - Logistic Function: Maps the input features to a value between 0 and 1.
 
 ### What is Classification:
-- 
+- Type of supervised learning.
+- Assign data points to specific category or classes.
+- Predict **labels**, not values (predicted in regression).
+
+#### Examples of Classification problems:
+- Identifying fraudulent transactions (fraudulent or not fraudulent)
+- Classifying images of animals (cat, dog, bird, etc.)
+- Diagnosing diseases based on patient symptoms (disease present or not present)
+
+### How Logistic Regression works??
+- Logistic regression outputs a probability score between 0 and 1.
+- It achieves this by employing `sigmoid function`.
+- **Sigmoid Function** introduces non-linearity, allowing the model to capture complex relationships between the features and the probability of the outcome.
+
+### What is sigmoid function:
+<img width="565" height="456" alt="image" src="https://github.com/user-attachments/assets/501b227b-d974-4ede-860c-ba1d58851776" />
+
+- Mathemetical function that takes any input value (ranging from negative to positive infinity) and maps it to an output value between 0 and 1.
+- Useful for modeling probabilities.
+- It has a characteristic "S" shape.
+- In logistic regression, this function transforms the linear combination of input features into a probability score. This score represents the likelihood of the input belonging to the positive class.
+
+##### Sigmoid function mathematical representation:
+```
+P(x) = 1 / (1 + e^-z)
+```
+Where: 
+- `P(x)` = predicted probability.
+- `e` = base of the natural logarithm (approximately 2.718).
+- `z` = linear combination of input features and their weights, similar to the linear regression equation: `z = m1x1 + m2x2 + ... + mnxn + c`
+
+### Spam Detection:
+- Example when building a spam filter using logistic regression, the algo will analyse the email features such as sender address, certain keywords, email content, and then calculate the probability score.
+- And the email will be classified as spam if the score exceeds defined threshold (e.g. 0.8).
+
+### Decision Boundary:
+<img width="844" height="701" alt="image" src="https://github.com/user-attachments/assets/61c5ba0f-5ada-4d4e-a5db-24ba7f9b2385" />
+
+- **Decision Boundary:** A line seperating data points into 2 classes.
+- This seperator boundary is determined by model's learned parameters and the chosen threshold probability.
+- In higher dimensions with more features, this separator becomes a hyperplane.
+
+### Hyperplanes:
+<img width="989" height="590" alt="image" src="https://github.com/user-attachments/assets/cd82c47c-055a-45a6-8b4a-00e05e95c0ff" />
+
+- In the context of ML, hyperplane is a subspace whose dimension is one less than that of the ambient space.
+- It's a way to visualize a decision boundary in higher dimensions.
+- A hyperplane is a "flat" subspace that divides the higher-dimensional space into two regions.
+- For example, in 2D (paper) => it's a line that divides the space in 2 parts. And in 3D (room) => it's a flat plane to divide space.
+- Visualizing more than 3D is difficult, but the concept remains the same.
+
+### Threshold Probability:
+- Often set at `0.5` but adjusted depending upon specific problem and desired balance between true and flase positives.
+- If data points predicted probability is `above threshold`, then `positive class`. If `below threshold`, then `negative class`.
+- For example, in spam detection, if the model predicts an email has a 0.8 probability of being spam (and the threshold is 0.5), it's classified as spam.
+
+### Data Assumptions:
