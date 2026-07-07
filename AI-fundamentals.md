@@ -325,5 +325,227 @@ Where:
 ### Data Assumptions:
 - **Binary Outcome:** The target variable must be categorical, with only two possible outcomes.
 - **Linearity of Log Odds:** Assumes linear relationship between predictor variables and log-odds of outcome. `log odds` = logarithm of the odds ratio (prbability of event occuring / probability of not occuring)
-- No or Little Multicollinearity: Multicollinearity occurs when predictor variables are highly correlated, which makes it difficult to determine their individual effects on outcome. So, there should be no or little Multicollinearity.
-- Large Sample Size: Logistic regression performs better with larger datasets, allowing for more reliable parameter estimation.
+- **No or Little Multicollinearity:** Multicollinearity occurs when predictor variables are highly correlated, which makes it difficult to determine their individual effects on outcome. So, there should be no or little Multicollinearity.
+- **Large Sample Size:** Logistic regression performs better with larger datasets, allowing for more reliable parameter estimation.
+
+## Decision Trees:
+<img width="989" height="590" alt="image" src="https://github.com/user-attachments/assets/972af174-9b99-44dd-9b39-17923cf0fcb1" />
+
+- **Decision Tree:** Supervised learning algo for,
+  - `classification` -> Predict categories/classes
+  - `regression` ->  Predict continuous values.
+- Creates a **tree-like structure** of decision rules.
+- Learns patterns from data by repeatedly splitting it into smaller subsets.
+- Easy to understand and interpret compared to many other ML algorithms.
+
+#### Example:
+- Predict whether to play tennis based on:
+  - Outlook
+  - Temperature
+  - Humidity
+  - Wind
+
+```text
+Outlook?
+├── Sunny
+│   └── Humidity?
+│       ├── High   → No
+│       └── Normal → Yes
+├── Overcast → Yes
+└── Rainy
+    └── Wind?
+        ├── Strong → No
+        └── Weak   → Yes
+```
+
+### Components of a Decision Tree:
+**Root Node:** 
+  - Top-most node of the tree.
+  - Contains the entire dataset.
+  - Represents the first split.
+```text
+          Outlook
+```
+**Internal Node:**
+- Represents a feature/attribute.
+- Contains decision rules.
+- Splits data into smaller subsets.
+```text
+          Outlook
+         /   |   \
+    Sunny Rainy Overcast
+```
+**Leaf Node:**
+- Terminal node.
+- Represents the final prediction/output.
+```text
+Humidity
+├── High   → No
+└── Normal → Yes
+```
+
+### Building a Decision Tree:
+- Start With **Entire Dataset**: Dataset becomes the root node
+- Determine the **best feature** for splitting using: `Gini Impurity`, `Entropy`, `Information Gain`
+- Choose the **feature** producing the `purest subsets`.
+- Create branches based on feature values to **split data**.
+- **Repeat recursively** and perform the same process on each subset.
+- **Stop** when a stopping criterion is met.
+
+#### Gini Impurity:
+- Measures probability of misclassifying a randomly selected sample.
+- Lower Gini Impurity indicates a purer node.
+- Formula:
+```py
+Gini(S) = 1 - Σ(pi)^2
+```
+- Where:
+  - `S` = Dataset
+  - `pi` = Probability of class i
+
+##### Example:
+Dataset:
+```text
+Class A = 30
+Class B = 20
+Total = 50
+```
+Class probabilities:
+```py
+pA = 30/50 = 0.6
+pB = 20/50 = 0.4
+```
+Gini Impurity:
+```py
+Gini(S) = 1 - (0.6^2 + 0.4^2) = 1 - (0.36 + 0.16) = 1 - 0.52 = 0.48
+```
+- Interpretation:
+```text
+Gini = 0      → Perfectly Pure Node
+Lower Gini    → Better Split
+Higher Gini   → More Mixed Classes
+```
+
+#### Entropy:
+- Measures disorder or uncertainty within a dataset.
+- Lower Entropy indicates more homogeneous data.
+- Formula:
+```py
+Entropy(S) = -Σ(pi * log2(pi))
+```
+- Where:
+  - `S` = Dataset
+  - `pi` = Probability of class i
+
+##### Example:
+- Using the same dataset S with 30 instances of class A and 20 instances of class B,
+```text
+Proportion of class A: pA = 0.6
+Proportion of class B: pB = 0.4
+```
+- The entropy is,
+```py
+Entropy(S) = - (0.6 * log2(0.6) + 0.4 * log2(0.4))
+           = - (0.6 * (-0.73697) + 0.4 * (-1.32193))
+           = - (-0.442182 - 0.528772)
+           = 0.970954
+```
+- Interpretation:
+```text
+Entropy = 0      → Perfectly Pure Node
+Lower Entropy    → Better Split
+Higher Entropy   → More Uncertainty
+```
+
+#### Information Gain:
+- Measures reduction in entropy after a split.
+- Feature with the highest Information Gain is selected.
+- Formula:
+```py
+Information Gain(S, A) = Entropy(S) - Σ ((|Sv| / |S|) * Entropy(Sv))
+```
+- Where:
+  - `S` = Entire dataset
+  - `A` = Feature used for splitting
+  - `Sv` = Subset after split
+
+##### Example:
+- Dataset:
+```text
+Class A = 30
+Class B = 20
+Total = 50
+```
+- Feature F:
+```text
+For F = 1: 30 instances, 20 class A, 10 class B
+For F = 2: 20 instances, 10 class A, 10 class B
+```
+- Step 1: Calculate entropy of entire dataset.
+```py
+Entropy(S) = - (30/50 * log2(30/50) + 20/50 * log2(20/50))
+           = - (0.6 * log2(0.6) + 0.4 * log2(0.4))
+           = - (0.6 * (-0.73697) + 0.4 * (-1.32193))
+           = 0.970954
+```
+- Step 2: Calculate the entropy for each subset Sv.
+  - For F = 1:
+```text
+Proportion of class A: pA = 20/30 = 0.6667
+Proportion of class B: pB = 10/30 = 0.3333
+Entropy(S1) = - (0.6667 * log2(0.6667) + 0.3333 * log2(0.3333)) = 0.9183
+```
+  - For F = 2:
+```text
+Proportion of class A: pA = 10/20 = 0.5
+Proportion of class B: pB = 10/20 = 0.5
+Entropy(S2) = - (0.5 * log2(0.5) + 0.5 * log2(0.5)) = 1.0
+```
+- Step 3: Calculate the weighted average entropy of the subsets
+```py
+Weighted Entropy = (|S1| / |S|) * Entropy(S1) + (|S2| / |S|) * Entropy(S2)
+                 = (30/50) * 0.9183 + (20/50) * 1.0
+                 = 0.55098 + 0.4
+                 = 0.95098
+```
+- Step 4: Calculate the information gain
+```py
+Information Gain(S, F) = Entropy(S) - Weighted Entropy
+                       = 0.970954 - 0.95098
+                       = 0.019974
+```
+- Interpretation:
+```text
+Higher Information Gain = Better Feature Split
+```
+
+#### Building the Tree:
+```text
+Start With Dataset
+        ↓
+Calculate Split Metric
+        ↓
+Choose Best Feature
+        ↓
+Split Data
+        ↓
+Repeat Recursively
+        ↓
+Stop When Criteria Met
+```
+##### Stopping Criteria:
+- **Maximum Depth:** Tree reaches predefined maximum depth. It helps prevent overfitting.
+- **Minimum Number of Samples:** Stop if too few samples remain in a node. It prevents meaningless splits.
+- **Pure Nodes:** All samples (data points) belong to the same class, indicating that further splits would not improve the purity of the subsets.
+
+#### Example of Playing Tennis:
+<img width="950" height="636" alt="image" src="https://github.com/user-attachments/assets/518b17fd-7d03-4965-a2ee-15a55f1ce459" />
+
+- Features:
+  - Outlook: Sunny, Overcast, Rainy
+  - Temperature: Hot, Mild, Cool
+  - Humidity: High, Normal
+  - Wind: Weak, Strong
+- Target Variable:
+  - Play tennis? => Yes/No
+
