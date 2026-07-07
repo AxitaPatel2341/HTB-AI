@@ -323,3 +323,7 @@ Where:
 - For example, in spam detection, if the model predicts an email has a 0.8 probability of being spam (and the threshold is 0.5), it's classified as spam.
 
 ### Data Assumptions:
+- **Binary Outcome:** The target variable must be categorical, with only two possible outcomes.
+- **Linearity of Log Odds:** Assumes linear relationship between predictor variables and log-odds of outcome. `log odds` = logarithm of the odds ratio (prbability of event occuring / probability of not occuring)
+- No or Little Multicollinearity: Multicollinearity occurs when predictor variables are highly correlated, which makes it difficult to determine their individual effects on outcome. So, there should be no or little Multicollinearity.
+- Large Sample Size: Logistic regression performs better with larger datasets, allowing for more reliable parameter estimation.
