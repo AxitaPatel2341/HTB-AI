@@ -549,3 +549,50 @@ Stop When Criteria Met
 - Target Variable:
   - Play tennis? => Yes/No
 
+##### How Algorithm works?
+First split:
+- Assume Outlook provides the highest Information Gain.
+```text
+             Outlook
+         /      |      \
+     Sunny   Rainy   Overcast
+```
+Second split:
+- For the Sunny branch:
+```text
+Sunny
+  ↓
+Humidity
+```
+```text
+Humidity
+├── High   → No
+└── Normal → Yes
+```
+- The algorithm continues recursively on all branches.
+- Stops when a stopping criterion is satisfied.
+
+##### Advantages of Decision Trees:
+- Easy to interpret
+  - Human-readable rules.
+  - Easy to visualize and explain.
+- No linearity assumption
+  - It works with `linear relationships` and `non-linear relationships`
+- No normality assumption
+  - Data doesn't need to be normally distributed
+- Handles outliers well
+  - Less affected by extreme values
+- Minimal data proccessing
+  - No need for: Feature scaling, Standardization, Normalization
+
+#### Decision Trees vs Linear Regression
+
+| Decision Trees | Linear Regression |
+|----------------|------------------|
+| Can perform Classification & Regression | Used for Regression |
+| No linearity assumption | Assumes linear relationship |
+| Highly interpretable | Moderate interpretability |
+| Handles non-linear patterns | Best for linear patterns |
+| Resistant to outliers | Sensitive to outliers |
+| No feature scaling usually needed | Scaling may improve performance |
+
