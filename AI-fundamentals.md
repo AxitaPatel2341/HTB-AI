@@ -538,7 +538,7 @@ Stop When Criteria Met
 - **Minimum Number of Samples:** Stop if too few samples remain in a node. It prevents meaningless splits.
 - **Pure Nodes:** All samples (data points) belong to the same class, indicating that further splits would not improve the purity of the subsets.
 
-#### Example of Playing Tennis:
+### Example of Playing Tennis:
 <img width="950" height="636" alt="image" src="https://github.com/user-attachments/assets/518b17fd-7d03-4965-a2ee-15a55f1ce459" />
 
 - Features:
@@ -572,7 +572,7 @@ Humidity
 - The algorithm continues recursively on all branches.
 - Stops when a stopping criterion is satisfied.
 
-##### Advantages of Decision Trees:
+#### Advantages of Decision Trees:
 - Easy to interpret
   - Human-readable rules.
   - Easy to visualize and explain.
@@ -585,7 +585,7 @@ Humidity
 - Minimal data proccessing
   - No need for: Feature scaling, Standardization, Normalization
 
-#### Decision Trees vs Linear Regression
+### Decision Trees vs Linear Regression
 
 | Decision Trees | Linear Regression |
 |----------------|------------------|
