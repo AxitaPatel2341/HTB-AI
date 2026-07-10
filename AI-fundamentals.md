@@ -596,3 +596,114 @@ Humidity
 | Resistant to outliers | Sensitive to outliers |
 | No feature scaling usually needed | Scaling may improve performance |
 
+## Naive Bayes:
+<img width="687" height="545" alt="image" src="https://github.com/user-attachments/assets/2464c1c7-390d-4156-9491-2d2f71f37902" />
+
+#### What is Naive Bayes?
+- A **supervised learning algorithm** used for **classification tasks**.
+- Based on **Bayes' Theorem** from probability theory.
+- Predicts the probability that a data point belongs to a specific class.
+- Called **"Naive"** because it assumes all features are independent of each other given the class label.
+- Commonly used for:
+  - Spam Detection
+  - Sentiment Analysis
+  - Document Classification
+  - Email Filtering
+
+#### Why is it Popular?
+- Simple to implement.
+- Fast training and prediction.
+- Works well with high-dimensional data.
+- Performs surprisingly well despite its simplified assumptions
+
+### Bayes' Theorem:
+- Bayes' theorem updates the probability of an event based on new evidence.
+- Calculates the probability of event `A` occurring given that event `B` has already occurred.
+- Formula:
+```py
+P(A|B) = (P(B|A) * P(A)) / P(B)
+```
+- Components:
+| Term | Meaning |
+|--------|---------|
+| P(A\|B) | Posterior Probability |
+| P(B\|A) | Likelihood |
+| P(A) | Prior Probability |
+| P(B) | Evidence |
+
+##### Understanding the terms:
+1. Prior Probability `P(A)`: Initial belief before seeing evidence. Example: `Probability a person has a disease.`
+2. Likelihood `P(B|A)`: Probability of observing evidence if the event is true. Example: `Probability of testing positive, if the person actually has the disease.`
+3. Evidence `P(B)`: Overall probability of observing the evidence. Example: `Probability of any positive test result.`
+4. Posterior Probability `P(A|B)`: Updated belief after incorporating evidence. Example: `Probability a person has the disease, after receiving a positive test.`
+
+#### Bayes' Theorem Example:
+Disease Testing Scenario
+- Given: Disease prevalence = 1%
+```py
+P(A) = 0.01
+```
+- Test accuracy:
+```py
+P(B|A) = 0.95
+```
+- False positive rate:
+```py
+P(B|¬A) = 0.05
+```
+- Probability of not having disease:
+```py
+P(¬A) = 1 - P(A) = 1 - 0.01 = 0.99
+```
+Step 1: Calculate P(B), using the law of total probability.
+```py
+P(B) = P(B|A) * P(A) + P(B|¬A) * P(¬A)
+
+* substitute values:
+P(B) = (0.95 * 0.01) + (0.05 * 0.99)
+     = 0.0095 + 0.0495
+     = 0.059
+```
+Step 2: Apply Bayes' Theorem
+```py
+P(A|B) = [P(B|A) * P(A)] / P(B)
+        = (0.95 * 0.01) / 0.059
+        = 0.0095 / 0.059
+        ≈ 0.161
+```
+- Result: `Probability of having disease after testing positive ≈ 16.1%`
+
+#### Key insight:
+- Even though the test is highly accurate (95%),
+- The disease is very rare (1% prevalence),
+- Therefore a positive test result does NOT guarantee the disease is present.
+
+### How Naive Bayes Works
+Step 1: Calculate Prior Probabilities
+- Determine probability of each class before looking at features.
+- Example: `Spam emails = 20% , Not spam = 80%` 
+```py
+P(spam) = 0.2
+P(NotSpam) = 0.8
+```
+Step 2: Calculate Likelihoods
+- Determine probability of each feature appearing within a class.
+- Example: `Probability of appearing word "free" in the spam emails.` and `Probability of word "meeting" appearing in non-spam emails.`
+```py
+P(Free|Spam)
+P(Meeting|NotSpam)
+```
+Step 3: Apply Bayes' Theorem
+- Calculate posterior probability for each class.
+```py
+Posterior = Likelihood × Prio
+
+- More formally:
+P(Class|Features) ∝ P(Features|Class) × P(Class)
+```
+Step 4: Predict class
+- Choose class with highest posterior probability.
+- Example: `P(Spam|Email) = 0.85 , P(NotSpam|Email) = 0.15` => Prediction: `Spam`
+
+> Note: Naive Bayes assumes that features are independent. For example in spam detection, words like "free" and "money" may occur together and naive bayes assumes it doesn't affect another. Despite this unrealistic assumption, Naive Bayes often performs very well.
+
